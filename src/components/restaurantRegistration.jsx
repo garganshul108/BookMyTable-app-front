@@ -685,12 +685,14 @@ class RestaurantRegistration extends Component {
                       value={this.state.slotForm.start}
                       onChange={this.handleSlotFormInputChange}
                       type="time"
+                      step={60 * 30}
                     />
                   </div>
                   <div className="col-4">
                     <FormInput
                       label="END"
-                      type="Time"
+                      type="time"
+                      step={60 * 30}
                       name="end"
                       value={this.state.slotForm.end}
                       onChange={this.handleSlotFormInputChange}

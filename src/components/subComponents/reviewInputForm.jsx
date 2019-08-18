@@ -5,6 +5,7 @@ import RatingStar from "./ratingStar";
 import * as fileServices from "../../services/fileServices";
 import * as reviewServices from "../../services/reviewServices";
 import { toast } from "react-toastify";
+import Joi from "joi-browser";
 
 import { getDateTime } from "../../util/util";
 const placeholderContent =
@@ -21,6 +22,7 @@ const ratingText = {
 class ReviewInputForm extends Component {
   state = {
     data: { rating: "", comment: "", photos: [] },
+    errors: {},
     photopath: "",
     user: {},
     ratingArray: [
@@ -94,9 +96,44 @@ class ReviewInputForm extends Component {
     "time": "12:00"
   }
    */
+  schema = {
+    rating: Joi.number()
+      .min(1)
+      .max(5)
+      .required()
+      .label("Rating"),
+    comment: Joi.string()
+      .min(140)
+      .max(300)
+      .required()
+      .label("Description"),
+    photos: Joi.any().label("Photos")
+  };
+
+  validate = () => {
+    console.log("validateing review");
+    let errors = {};
+
+    let validationResult = Joi.validate(this.state.data, this.schema, {
+      abortEarly: false
+    });
+    if (!validationResult.error) return null;
+
+    for (let error of validationResult.error.details) {
+      errors[error.path[0]] = error.message;
+    }
+
+    return errors;
+  };
 
   handleSubmit = async e => {
     e.preventDefault();
+
+    let errors = this.validate();
+    console.log(errors);
+    this.setState({ errors: errors || {} }, () => console.log(this.state));
+    if (errors) return;
+
     let submissionData = { ...this.state.data };
     submissionData.restaurant_id = this.props.restaurant_id;
     let { date: dateToday, time: timeNow } = getDateTime(new Date());
@@ -155,6 +192,11 @@ class ReviewInputForm extends Component {
                     </big>
                   </div>
                 </div>
+                {this.state.errors.rating && (
+                  <div className="alert alert-danger">
+                    <small>{this.state.errors.rating}</small>
+                  </div>
+                )}
                 <div>
                   <div className="form-group">
                     <textarea
@@ -167,6 +209,11 @@ class ReviewInputForm extends Component {
                       placeholder={placeholderContent}
                     />
                   </div>
+                  {this.state.errors.comment && (
+                    <div className="alert alert-danger">
+                      <small>{this.state.errors.comment}</small>
+                    </div>
+                  )}
                 </div>
 
                 <div className="row">
@@ -201,7 +248,6 @@ class ReviewInputForm extends Component {
                     </div>
                   </div>
                 </div>
-                {/* photo => "http://localhost:5000/api/photos/" + photo + "?dir=review" */}
                 <div className="uploadedPhotoDisplay">
                   <div className="row">
                     <div className="col">
