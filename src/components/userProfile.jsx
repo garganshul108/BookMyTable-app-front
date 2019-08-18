@@ -3,6 +3,7 @@ import "./css/userProfile.css";
 import { getUser } from "../services/userServices";
 import _ from "lodash";
 import { getPhotoURL } from "../services/fileServices";
+import { getDateTimeDiff } from "../util/util";
 
 const tempProfile =
   "https://b.zmtcdn.com/data/user_profile_pictures/6e4/9f999a3334fd5ea937fa98f2843276e4.jpg?fit=around%7C300%3A300&crop=300%3A300%3B%2A%2C%2A";
@@ -169,21 +170,21 @@ class UserProfile extends Component {
     console.log("dl", dineline);
 
     dineline = dineline.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
+      return getDateTimeDiff(a, b);
     });
 
     console.log("dl", dineline);
 
     reviews = reviews.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
+      return getDateTimeDiff(a, b);
     });
 
     beentheres = beentheres.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
+      return getDateTimeDiff(a, b);
     });
 
     bookmarks = bookmarks.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
+      return getDateTimeDiff(a, b);
     });
 
     console.log("dineline", dineline);

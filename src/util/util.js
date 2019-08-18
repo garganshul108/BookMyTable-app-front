@@ -37,3 +37,19 @@ export const getDateTime = dateString => {
 
     return { date, time };
 };
+
+
+export function getTimeinMinutes(time24) {
+    let [hrs, mins, sec] = time24.split(":");
+    mins = mins + hrs * 60;
+    return mins;
+}
+
+export function getDateTimeDiff(a, b) {
+    return (
+        (new Date(b.date) -
+            new Date(a.date)) * 10000 +
+        getTimeinMinutes(b.time) -
+        getTimeinMinutes(a.time)
+    );
+}
