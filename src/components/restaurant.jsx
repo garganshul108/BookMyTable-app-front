@@ -12,6 +12,7 @@ import PhotoGallery from "./subComponents/photoGallery";
 import * as beenThereServices from "../services/beenThereServices";
 import { toast } from "react-toastify";
 import * as bookmarkServices from "../services/bookmarkServices";
+import { time24To12 } from "../util/util";
 
 let photo = [
   "https://b.zmtcdn.com/data/pictures/chains/5/18895645/24279bed659c9c07ea57444d841a305c.jpg?crop=3738%3A3738%3B764%2C0&fit=around%7C200%3A200",
@@ -255,7 +256,7 @@ class Restaurant extends Component {
             <div className="subInfo">
               <h5 className="subTitle">Opening Hours</h5>
 
-              {this.state.restaurant.timings.split(",").map(time => (
+              {this.state.restaurant.slots.map(slot => (
                 <React.Fragment>
                   <span
                     style={{
@@ -263,7 +264,12 @@ class Restaurant extends Component {
                       fontSize: "0.9rem"
                     }}
                   >
-                    {time}
+                    {
+                      <span>
+                        {time24To12(slot.start_time)}&nbsp;-&nbsp;
+                        {time24To12(slot.end_time)}
+                      </span>
+                    }
                   </span>
                 </React.Fragment>
               ))}
