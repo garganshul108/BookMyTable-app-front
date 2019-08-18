@@ -12,7 +12,8 @@ import PhotoGallery from "./subComponents/photoGallery";
 import * as beenThereServices from "../services/beenThereServices";
 import { toast } from "react-toastify";
 import * as bookmarkServices from "../services/bookmarkServices";
-import { time24To12 } from "../util/util";
+import { time24To12, getDateTime } from "../util/util";
+import RestaurantReviews from "./subComponents/restaurantReviews";
 
 let photo = [
   "https://b.zmtcdn.com/data/pictures/chains/5/18895645/24279bed659c9c07ea57444d841a305c.jpg?crop=3738%3A3738%3B764%2C0&fit=around%7C200%3A200",
@@ -57,7 +58,7 @@ class Restaurant extends Component {
       opening_status: null,
       phone_numbers: "",
       rating: null,
-      reviews: "",
+      reviews: [],
       slots: [],
       thumb: "",
       timings: "",
@@ -69,29 +70,18 @@ class Restaurant extends Component {
   async componentDidMount() {
     let restaurant = await getRestaurantById(this.props.match.params.id);
     restaurant = restaurant[0];
+    console.log("supplied", restaurant);
     restaurant.wideDisplay = restaurant.thumb.split("?")[0] + wideDisplayString;
     this.setState({ restaurant }, () => {
       console.log(this.state);
     });
   }
 
-  getDateTime = today => {
-    let date =
-      today.getFullYear() +
-      "/" +
-      (today.getMonth() + 1) +
-      "/" +
-      today.getDate();
-    let time = today.getHours() + ":" + today.getMinutes();
-
-    return { date, time };
-  };
-
   handleAddBeenThere = async e => {
     e.preventDefault();
     console.log("been there clicked");
     let restaurant_id = this.props.match.params.id;
-    let { date, time } = this.getDateTime(new Date());
+    let { date, time } = getDateTime(new Date());
     let submissionData = { restaurant_id, date, time };
     console.log(submissionData);
     try {
@@ -104,7 +94,7 @@ class Restaurant extends Component {
     e.preventDefault();
     console.log("bookmark clicked");
     let restaurant_id = this.props.match.params.id;
-    let { date, time } = this.getDateTime(new Date());
+    let { date, time } = getDateTime(new Date());
     let submissionData = { restaurant_id, date, time };
     console.log(submissionData);
     try {
@@ -184,10 +174,17 @@ class Restaurant extends Component {
                 <i class="fa fa-pencil-square-o" aria-hidden="true" />
                 &nbsp;&nbsp;Review Visit
               </Scroll.Link>
-              <button type="button" class="btn ">
+              <Scroll.Link
+                type="button"
+                class="btn "
+                to="allReviews"
+                smooth={true}
+                offset={-70}
+                duration={1000}
+              >
                 <i class="fa fa-file-text" aria-hidden="true" />
                 &nbsp;&nbsp;All reviews
-              </button>
+              </Scroll.Link>
               <Scroll.Link
                 to="photoGallery"
                 smooth={true}
@@ -371,42 +368,10 @@ class Restaurant extends Component {
                 </div>
               </div>
               {this.renderRestaurantInfo()}
-              {/* <div className="row no-gutters my-2">
-                <div className="col">
-                  <Link
-                    to="booking"
-                    // type="button"
-                    class="btn btn-light"
-                    style={{ width: "100%" }}
-                  >
-                    Booking
-                  </Link>
-                </div>
-                <div className="col">
-                  <Link
-                    to="reviews"
-                    // type="button"
-                    class="btn btn-light"
-                    style={{ width: "100%" }}
-                  >
-                    Reviews
-                  </Link>
-                </div>
-                <div className="col">
-                  <Link
-                    to="photos"
-                    // type="button"
-                    class="btn btn-light"
-                    style={{ width: "100%" }}
-                  >
-                    Photos
-                  </Link>
-                </div>
-              </div> */}
+
               <div className="restaurantActiions">
                 <div className="row">
                   <div className="col">
-                    {/* <Switch> */}
                     <Route
                       path="/restaurant/:id"
                       render={props => (
@@ -438,7 +403,17 @@ class Restaurant extends Component {
                         />
                       )}
                     />
-                    {/* </Switch> */}
+                    <Route
+                      path="/restaurant/:id"
+                      render={props => (
+                        <RestaurantReviews
+                          id="allReviews"
+                          restaurant_id={this.props.match.params.id}
+                          reviews={this.state.restaurant.reviews}
+                          {...props}
+                        />
+                      )}
+                    />
                   </div>
                 </div>
               </div>

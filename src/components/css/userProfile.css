@@ -51,10 +51,6 @@
   letter-spacing: 0.01rem;
 }
 
-/* .displayHistoryElements .reviewDiv .reviewPhotos {
-  padding: 10px;
-  background: black;
-} */
 .displayHistoryElements .reviewDiv .reviewPhotos img {
   border-radius: 10px;
   width: 150px;

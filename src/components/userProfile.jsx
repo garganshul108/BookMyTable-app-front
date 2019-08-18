@@ -4,6 +4,7 @@ import { getUser } from "../services/userServices";
 import _ from "lodash";
 import { getPhotoURL } from "../services/fileServices";
 import { getDateTimeDiff } from "../util/util";
+import { getBookingsByUser } from "../services/bookingServices";
 
 const tempProfile =
   "https://b.zmtcdn.com/data/user_profile_pictures/6e4/9f999a3334fd5ea937fa98f2843276e4.jpg?fit=around%7C300%3A300&crop=300%3A300%3B%2A%2C%2A";
@@ -145,6 +146,7 @@ class UserProfile extends Component {
     beentheres: [],
     bookmarks: [],
     dineline: [],
+    bookings: [],
     currentDiv: 1
   };
 
@@ -192,6 +194,10 @@ class UserProfile extends Component {
     delete data.reviews;
     delete data.bookmarks;
     let user = data;
+
+    let bookingResponse = await getBookingsByUser();
+    let bookings = bookingResponse.data;
+    console.log("bookings", bookings);
 
     for (let review of reviews) {
       review.photos = review.photos.map(photo => getPhotoURL(photo, "review"));

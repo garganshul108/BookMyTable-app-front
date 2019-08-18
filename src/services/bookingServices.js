@@ -9,3 +9,12 @@ export const bookTable = (data) => {
         }
     });
 }
+
+
+export const getBookingsByUser = () => {
+    return http.get("/users/bookings", {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+        }
+    });
+}
