@@ -97,9 +97,7 @@ class ReviewInputForm extends Component {
   }
    */
   schema = {
-    rating: Joi.number()
-      .min(1)
-      .max(5)
+    rating: Joi.string()
       .required()
       .label("Rating"),
     comment: Joi.string()
@@ -131,7 +129,11 @@ class ReviewInputForm extends Component {
 
     let errors = this.validate();
     console.log(errors);
-    this.setState({ errors: errors || {} }, () => console.log(this.state));
+    this.setState({ errors: errors || {} }, () => {
+      if (this.state.errors.comment) toast.error(this.state.errors.comment);
+      if (this.state.errors.rating) toast.error(this.state.errors.rating);
+    });
+
     if (errors) return;
 
     let submissionData = { ...this.state.data };
@@ -192,11 +194,6 @@ class ReviewInputForm extends Component {
                     </big>
                   </div>
                 </div>
-                {this.state.errors.rating && (
-                  <div className="alert alert-danger">
-                    <small>{this.state.errors.rating}</small>
-                  </div>
-                )}
                 <div>
                   <div className="form-group">
                     <textarea
@@ -209,11 +206,6 @@ class ReviewInputForm extends Component {
                       placeholder={placeholderContent}
                     />
                   </div>
-                  {this.state.errors.comment && (
-                    <div className="alert alert-danger">
-                      <small>{this.state.errors.comment}</small>
-                    </div>
-                  )}
                 </div>
 
                 <div className="row">
