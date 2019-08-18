@@ -125,7 +125,16 @@ class Login extends Component {
               <i className="fa fa-times" aria-hidden="true" />
             </button>
             <div className="loginDiv">
-              <small className="form-text text-muted">Already a User?</small>
+              <small
+                className="form-text text-muted"
+                style={{ cursor: "pointer" }}
+                onClick={e => {
+                  this.props.openSignUp(e);
+                  this.props.closeTab(e);
+                }}
+              >
+                New User?
+              </small>
               <h4>Login to continue</h4>
               <form onSubmit={this.handleSubmit}>
                 <FormInput

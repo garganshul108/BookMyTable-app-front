@@ -164,13 +164,21 @@ class App extends Component {
               <Route
                 path="/restaurants/:city?"
                 render={props => (
-                  <Login {...props} closeTab={this.handleCloseLogin} />
+                  <Login
+                    {...props}
+                    closeTab={this.handleCloseLogin}
+                    openSignUp={this.handleOpenSignUp}
+                  />
                 )}
               />
               <Route
                 path="/"
                 render={props => (
-                  <Login {...props} closeTab={this.handleCloseLogin} />
+                  <Login
+                    {...props}
+                    closeTab={this.handleCloseLogin}
+                    openSignUp={this.handleOpenSignUp}
+                  />
                 )}
               />
             </Switch>
@@ -180,13 +188,21 @@ class App extends Component {
               <Route
                 path="/restaurants/:city?"
                 render={props => (
-                  <SignUp {...props} closeTab={this.handleCloseSignUp} />
+                  <SignUp
+                    {...props}
+                    closeTab={this.handleCloseSignUp}
+                    openLogin={this.handleOpenLogin}
+                  />
                 )}
               />
               <Route
                 path="/"
                 render={props => (
-                  <SignUp {...props} closeTab={this.handleCloseSignUp} />
+                  <SignUp
+                    {...props}
+                    closeTab={this.handleCloseSignUp}
+                    openLogin={this.handleOpenLogin}
+                  />
                 )}
               />
             </Switch>

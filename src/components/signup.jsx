@@ -129,7 +129,16 @@ class SignUp extends Component {
                 <br />
                 <hr />
               </Link>
-              <small className="form-text text-muted">New User?</small>
+              <small
+                className="form-text text-muted"
+                style={{ cursor: "pointer" }}
+                onClick={e => {
+                  this.props.openLogin(e);
+                  this.props.closeTab(e);
+                }}
+              >
+                Already a User?
+              </small>
               <h4>Welcome to SignUp</h4>
               <form onSubmit={this.handleSubmit}>
                 <FormInput
