@@ -103,7 +103,7 @@ class RestaurantBookingWindow extends Component {
 
     let errors = this.validate();
     console.log(errors);
-    this.setState({ errors: errors || {} });
+    this.setState({ errors: errors || {} }, () => {});
     if (errors) return;
 
     let submissionData = { ...this.state.data };
