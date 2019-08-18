@@ -76,9 +76,17 @@ class RestaurantBookingWindow extends Component {
     //   input.name,
     //   input.value,
     //   input.dataset.parent,
-    //   input.dataset.gparent
+    //   input.dataset.gparent,
+    //   input.step
     // );
     let data = { ...this.state.data };
+    // if (input.step && input.name === "time") {
+    //   let inputTime = input.value;
+    //   let [hrs, min, sec] = inputTime.split(":");
+    //   if (min > 31) min = 30;
+    //   else min = 0;
+    //   input.value = hrs + ":" + min;
+    // }
     if (input.dataset.gparent) {
       data[input.dataset.gparent][input.dataset.parent][input.name] =
         input.value;
