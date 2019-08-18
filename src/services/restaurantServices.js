@@ -63,7 +63,7 @@ export const getRestaurantById = async (id) => {
 
 
 export const postNewRestaurant = (data) => {
-    return http.post('/restaurants', [{ ...data, password: "qwerty", errors: {} }], {
+    return http.post('/restaurants', [{ ...data, errors: {} }], {
         headers: {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",

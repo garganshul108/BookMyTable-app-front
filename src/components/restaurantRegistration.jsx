@@ -13,6 +13,7 @@ import { time24To12 } from "../util/util";
 
 import "../components/css/restaurantRegistration.css";
 import { postNewRestaurant } from "../services/restaurantServices";
+import { toast } from "react-toastify";
 
 class RestaurantRegistration extends Component {
   state = {
@@ -56,7 +57,9 @@ class RestaurantRegistration extends Component {
         Friday: false,
         Saturday: false,
         Sunday: true
-      }
+      },
+      password: "",
+      confirmPassword: ""
     },
     errors: {},
     establishmentForm: "",
@@ -147,7 +150,15 @@ class RestaurantRegistration extends Component {
       .required()
       .label("Restaurants"),
     website: Joi.any(),
-    days: Joi.any()
+    days: Joi.any(),
+    password: Joi.string()
+      .min(3)
+      .required()
+      .label("Password"),
+    confirmPassword: Joi.any()
+      .valid(Joi.ref("password"))
+      .required()
+      .label("Confirm Password")
   };
 
   async componentDidMount() {
@@ -171,13 +182,17 @@ class RestaurantRegistration extends Component {
   };
 
   handleDeleteSlot = ({ currentTarget: btn }) => {
+    // console.log("delete slot clicked");
+    // console.log(btn.id);
     let { data } = this.state;
     for (let i = 0; i < data.slots.length; i++) {
-      if (data.slots[i].id === btn.id) {
+      if (data.slots[i].id == btn.id) {
         data.slots.splice(i, 1);
+        // console.log("splice happend");
         break;
       }
     }
+    // console.log(data.slots);
     this.setState({ data });
   };
 
@@ -318,7 +333,7 @@ class RestaurantRegistration extends Component {
   };
 
   deletingFields = data => {
-    let deleteKeys = ["no_of_slots"];
+    let deleteKeys = ["no_of_slots", "confirmPassword"];
     for (let key of deleteKeys) {
       delete data[key];
     }
@@ -330,7 +345,12 @@ class RestaurantRegistration extends Component {
     this.changingNames(submissionData);
     this.deletingFields(submissionData);
     console.log("state at registration submisson: \n", submissionData);
-    await postNewRestaurant(submissionData);
+    try {
+      await postNewRestaurant(submissionData);
+      toast.success("Restaurant submitted for review");
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   render() {
@@ -692,7 +712,10 @@ class RestaurantRegistration extends Component {
 
     const renderContactInfo = () => {
       return (
-        <RegistrationSubForm title="Contact Info" xClass="contactInfo">
+        <RegistrationSubForm
+          title="Contact Info / SignUp Credentials"
+          xClass="contactInfo"
+        >
           <div className="row">
             <div className="col-6">
               <FormInput
@@ -709,6 +732,26 @@ class RestaurantRegistration extends Component {
                 value={this.state.data.website}
                 onChange={this.handleInputChange}
                 name="website"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <FormInput
+                label="PASSWORD"
+                value={this.state.data.password}
+                onChange={this.handleInputChange}
+                name="password"
+                type="password"
+              />
+            </div>
+            <div className="col-6">
+              <FormInput
+                label="CONFIRM PASSWORD"
+                value={this.state.data.confirmPassword}
+                onChange={this.handleInputChange}
+                name="confirmPassword"
+                type="password"
               />
             </div>
           </div>
