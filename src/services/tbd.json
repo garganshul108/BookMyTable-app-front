@@ -1,0 +1,37 @@
+{
+  "average_cost_for_two": "100",
+  "capacity": "21",
+  "cuisines": ["South Indian"],
+  "days": {
+    "Monday": false,
+    "Tuesday": true,
+    "Wednesday": false,
+    "Thursday": true,
+    "Friday": false,
+    "Saturday": true,
+    "Sunday": false
+  },
+  "email": "anshul@gmail.com",
+  "establishment": ["Pub"],
+  "highlights": ["Cash"],
+  "location": {
+    "address": {
+      "line_1": "A34 A,  A Block",
+      "line_2": "South City 2"
+    },
+    "locality": "Sohna Road",
+    "city": "Gurgaon",
+    "locality_verbose": "Park hospital, Sohna Road",
+    "zipcode": "122018"
+  },
+  "name": "Anshul P",
+  "opening_status": 1,
+  "phone": { "std": "0124", "number": "4226873" },
+  "slots": [
+    { "start_time": "13:01", "end_time": "23:00" },
+    { "start_time": "11:01", "end_time": "13:00" }
+  ],
+  "thumb": "www.html.com",
+  "timings": "12 323- 6",
+  "website": "www.ansuhl.com"
+}

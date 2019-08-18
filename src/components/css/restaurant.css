@@ -1,0 +1,81 @@
+.restaurantInfoBanner {
+  padding: 30px;
+  background: white;
+}
+
+.middot {
+  font-size: 0.1rem;
+}
+
+.restaurantInfoBanner .title {
+  font-weight: 900;
+}
+
+.restaurantInfoBanner .rating-large {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.restaurantInfoBanner .topButtons > .btn {
+  margin: 10px;
+  background: white;
+  color: gray;
+  box-shadow: 0px 0px 3px gray;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+  -webkit-appearance: none;
+}
+
+.restaurantInfoBanner .topButtons > .btn:hover {
+  background: rgba(133, 143, 148, 0.479);
+  color: rgba(65, 63, 63, 0.959);
+}
+
+.restaurantInfoBanner .subInfo {
+  margin-bottom: 30px;
+}
+.restaurantInfoBanner .subInfo .subTitle {
+  font-weight: 900;
+}
+.restaurantActiions .bookingDiv,
+.restaurantActiions .reviewDiv,
+.restaurantActiions .photoDiv {
+  padding: 15px;
+  background: white;
+}
+
+.restaurantActiions .reviewDiv .ratingInput {
+  box-shadow: 0px 0px 3px gray;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  padding: 10px 20px;
+}
+
+.restaurantActiions .reviewDiv .uploadedPhotoDisplay {
+  padding: 10px;
+}
+
+.restaurantActiions .reviewDiv .uploadedPhotoDisplay img {
+  border-radius: 10px;
+  width: 200px;
+  margin: 5px;
+}
+
+.restaurantActiions .photoDiv .gallery {
+  overflow: hidden;
+  overflow-x: scroll;
+  position: relative;
+  height: 250px;
+}
+.restaurantActiions .photoDiv .gallery > div {
+  width: max-content;
+  position: absolute;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 1px;
+}
+
+.restaurantActiions .photoDiv .gallery > div > img {
+  margin: 5px;
+  border-radius: 10px;
+}

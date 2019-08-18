@@ -1,0 +1,49 @@
+[
+  {
+    "average_cost_for_two": "10000",
+    "cuisines": ["Pizza", "North Indian"],
+    "establishment": ["Cafe", "Fine Dine"],
+    "highlights": ["Cash", "Card"],
+    "location": {
+      "address": {
+        "line_1": "Gurgaon Sector 4",
+        "line_2": "Mail Road"
+      },
+      "locality": "Badshah Pur",
+      "city": "Gurgaon",
+      "locality_verbose": "BadhShah Pur East More",
+      "zipcode": "122018"
+    },
+    "name": "Anshul Da Dhabba",
+    "phone": {
+      "std": "1210",
+      "number": "11220011"
+    },
+    "capacity": "100",
+    "thumb": "https://b.zmtcdn.com/data/pictures/chains/1/491/041cd733bcc1683c88f6cb8a0b87b8c8.png?fit=around%7C200%3A150&crop=200%3A150%3B%2A%2C%2A",
+    "timings": "12 ap -12pm",
+    "opening_status": "",
+    "email": "",
+    "website": "",
+    "days": {
+      "Monday": false,
+      "Tuesday": false,
+      "Wednesday": true,
+      "Thursday": false,
+      "Friday": false,
+      "Saturday": true,
+      "Sunday": false
+    },
+    "slots": [
+      {
+        "start_time": "10:00",
+        "end_time": "15:00"
+      },
+      {
+        "start_time": "18:00",
+        "end_time": "22:00"
+      }
+    ],
+    "errors": {}
+  }
+]

@@ -1,0 +1,54 @@
+.homeTab {
+  font-family: cursive !important;
+  width: 100%;
+}
+
+.homeTab img {
+  width: 100%;
+}
+
+.homeTab .homeContent {
+  background: white;
+  height: 100%;
+  padding: 40px;
+}
+
+.homeTab .homeContent .userButtons {
+  /* text-align: center; */
+}
+
+.homeTab .homeContent .userButtons .buttons {
+  margin: 5px;
+  font-size: 2rem;
+  text-decoration: none;
+  font-weight: 900;
+  /* padding: 2px 5px; */
+}
+
+.homeTab .homeContent .title {
+  font-weight: 900;
+  line-height: unset;
+  font-size: 4rem;
+  animation: ease-in;
+}
+
+.homeTab .homeContent .desc big {
+  font-size: 3rem;
+  font-weight: bold;
+  display: block;
+  color: rgb(138, 50, 50);
+}
+
+.homeTab .homeContent .desc small {
+  font-size: 1.5rem;
+  /* font-weight: bold; */
+  display: block;
+  letter-spacing: 0px;
+  font-family: cursive;
+  /* font-weight: 800 !important; */
+}
+
+.homeTab .homeContent .searchBox {
+  /* margin: 20px auto 40px; */
+  padding: 15px 30px;
+}

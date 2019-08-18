@@ -1,0 +1,153 @@
+.badge {
+  cursor: pointer;
+  margin: 1px;
+}
+
+hr {
+  margin-bottom: 2px !important;
+  margin-top: 2px !important;
+}
+
+.restaurantCatalog {
+  /* border: 2px dashed rgba(100, 1, 100, 0.4); */
+  /* border-radius: 10px; */
+  padding: 2px;
+}
+
+.restaurantDisplay {
+  padding: 5px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid #a5a5a591;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #a5a5a520;
+}
+
+/* .restaurantDisplay:hover { */
+/* border-bottom-left-radius: 40px;
+  border-top-right-radius: 40px; */
+/* border: 1px solid #5555; */
+/* background: #5551; */
+/* } */
+
+.restaurantDisplay .restaurantThumbnail {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.restaurantDisplay .reviewDiv > .voteCount {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.restaurantDisplay .features > table .header,
+.restaurantDisplay .features > table .data {
+  font-size: 0.8rem;
+  padding-left: 20px;
+}
+
+.restaurantDisplay .features > table {
+  width: 100%;
+}
+.restaurantDisplay .features > table .header {
+  width: 25%;
+  color: gray;
+  text-transform: capitalize;
+}
+
+.restaurantDisplay .features > table .data {
+  width: 70%;
+}
+
+.restaurantDisplay .restaurantContacts > div {
+  margin: 0;
+  padding: 0;
+  border-right: 1px solid #e5e5e5;
+}
+
+.restaurantDisplay .options {
+  width: 100%;
+  text-align: center;
+  border: none;
+  background: inherit;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #a5a5a5;
+  outline: none;
+}
+
+.activeOption {
+  color: black !important;
+}
+
+.restaurantDisplay .optionText {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: center;
+  width: 98%;
+}
+
+.restaurantDisplay .restaurantContacts .options:hover {
+  /* background: #a5a5a520; */
+  color: black;
+}
+
+.restaurantDisplay .restaurantContacts #book {
+  color: green;
+  border-radius: 5px;
+  text-decoration: none;
+  /* color: white; */
+}
+
+.restaurantDisplay .restaurantContacts #book:hover {
+  background: green;
+  border-radius: 5px;
+  color: white;
+}
+.restaurantDisplay .restaurantDesc p {
+  margin-bottom: 2px;
+}
+
+.restaurantDisplay .restaurantDesc .banner {
+  font-weight: 900;
+  color: #ec0041;
+  font-size: 1.5rem;
+}
+
+.restaurantDisplay .restaurantDesc .location {
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.restaurantDisplay .restaurantDesc .address {
+  /* font-weight: 900; */
+  font-size: 0.8rem;
+  color: gray;
+  width: 90%;
+}
+
+.restaurantDisplay .restaurantDesc .establishment {
+  text-transform: capitalize;
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.filterDisplay {
+  padding: 5px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  background: rgb(238, 247, 250);
+  border: 2px dashed lightseagreen;
+  border-radius: 3px;
+  /* box-shadow: 1px 1px 1px blue; */
+}
+
+.filterDisplay .deleteFBtn {
+  /* font-weight: normal !important; */
+  /* margin: 2px; */
+  border: none;
+  opacity: 0.8;
+}

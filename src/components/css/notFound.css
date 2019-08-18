@@ -1,0 +1,28 @@
+.outerDiv {
+  width: 80%;
+  background: rgba(255, 153, 153, 0.4);
+  padding: 20px;
+  border: 2px solid rgba(255, 153, 153, 1);
+  border-radius: 10px;
+}
+
+.outerDiv > span {
+  font-size: 0.9rem;
+  color: #666f;
+}
+
+.outerDiv > div {
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+.outerDiv > div > div > ul {
+  margin-top: 20px;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+.outerDiv > div > div > ul > li > .Link {
+  text-decoration: none;
+  color: #f00f;
+}

@@ -1,0 +1,16 @@
+.navBar-design {
+  width: 100%;
+  background: #b30122; /* rgb(124, 20, 20);*/
+}
+
+.navBar-design .navbar-brand {
+  font-weight: 900;
+  font-family: Geneva, Tahoma, sans-serif;
+}
+
+.userBar-design {
+  width: 100%;
+  background: white;
+  padding: 3px;
+  border-bottom: 1px solid #5e5e5e50;
+}
