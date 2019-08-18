@@ -162,6 +162,8 @@ class RestaurantBookingWindow extends Component {
                 onChange={this.handleInputChange}
                 name="time"
                 type="time"
+                step={60 * 30}
+                onKeyPressed={() => false}
                 error={this.state.errors.time}
               />
             </div>

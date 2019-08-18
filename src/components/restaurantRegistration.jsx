@@ -339,8 +339,28 @@ class RestaurantRegistration extends Component {
     }
   };
 
+  validate = () => {
+    let errors = {};
+
+    let validationResult = Joi.validate(this.state.data, this.mainSchema, {
+      abortEarly: false
+    });
+    if (!validationResult.error) return null;
+
+    for (let error of validationResult.error.details) {
+      errors[error.path[0]] = error.message;
+    }
+
+    return errors;
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
+
+    let errors = this.validate();
+    console.log(errors);
+    this.setState({ errors: errors || {} });
+
     let submissionData = { ...this.state.data };
     this.changingNames(submissionData);
     this.deletingFields(submissionData);
@@ -687,22 +707,23 @@ class RestaurantRegistration extends Component {
           <div className="row">
             <div className="col">
               <div className="slotsDisplay">
-                {this.state.data.slots.map(slot => {
-                  return (
-                    <span className="badge badge-danger">
-                      <button
-                        className="btn btn-sm btn-danger"
-                        type="button"
-                        onClick={this.handleDeleteSlot}
-                        id={slot.id}
-                      >
-                        {time24To12(slot.start)}&nbsp;-&nbsp;
-                        {time24To12(slot.end)}&nbsp;
-                        <i className="fa fa-times" aria-hidden="true" />
-                      </button>
-                    </span>
-                  );
-                })}
+                {this.state.data.slots.length > 0 &&
+                  this.state.data.slots.map(slot => {
+                    return (
+                      <span className="badge badge-danger">
+                        <button
+                          className="btn btn-sm btn-danger"
+                          type="button"
+                          onClick={this.handleDeleteSlot}
+                          id={slot.id}
+                        >
+                          {time24To12(slot.start)}&nbsp;-&nbsp;
+                          {time24To12(slot.end)}&nbsp;
+                          <i className="fa fa-times" aria-hidden="true" />
+                        </button>
+                      </span>
+                    );
+                  })}
               </div>
             </div>
           </div>
