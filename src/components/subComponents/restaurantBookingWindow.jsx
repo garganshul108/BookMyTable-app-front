@@ -5,6 +5,7 @@ import "../css/restaurant.css";
 import * as bookingServices from "../../services/bookingServices";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
+import { time24To12 } from "../../util/util";
 
 class RestaurantBookingWindow extends Component {
   state = {
@@ -121,8 +122,7 @@ class RestaurantBookingWindow extends Component {
       }
     } catch (ex) {
       const errors = { ...this.state.errors };
-      // errors.email = ex.response.status + ": " + ex.response.data;
-      console.log(ex.response);
+      toast.error(ex.response);
       this.setState({ errors });
     }
   };
@@ -243,12 +243,7 @@ class RestaurantBookingWindow extends Component {
                   });
                 }}
               >
-                {slot.start.split(":")[0] > "12"
-                  ? parseInt(slot.start.split(":")[0] - 12).toString() +
-                    ":" +
-                    slot.start.split(":")[1] +
-                    " PM"
-                  : slot.start + " AM"}
+                {time24To12(slot.start)}
               </button>
             ))}
           </RegistrationSubForm>

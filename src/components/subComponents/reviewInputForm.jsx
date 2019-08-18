@@ -5,6 +5,8 @@ import RatingStar from "./ratingStar";
 import * as fileServices from "../../services/fileServices";
 import * as reviewServices from "../../services/reviewServices";
 import { toast } from "react-toastify";
+
+import { getDateTime } from "../../util/util";
 const placeholderContent =
   "Tip: A great review covers food, service, and ambience. Got recommendations for your favourite dishes and drinks, or something everyone should try here? Include that too! And remember, your review needs to be at least 140 characters long :)";
 
@@ -92,23 +94,12 @@ class ReviewInputForm extends Component {
     "time": "12:00"
   }
    */
-  getDateTime = today => {
-    let date =
-      today.getFullYear() +
-      "/" +
-      (today.getMonth() + 1) +
-      "/" +
-      today.getDate();
-    let time = today.getHours() + ":" + today.getMinutes();
-
-    return { date, time };
-  };
 
   handleSubmit = async e => {
     e.preventDefault();
     let submissionData = { ...this.state.data };
     submissionData.restaurant_id = this.props.restaurant_id;
-    let { date: dateToday, time: timeNow } = this.getDateTime(new Date());
+    let { date: dateToday, time: timeNow } = getDateTime(new Date());
     submissionData.date = dateToday;
     submissionData.time = timeNow;
     submissionData.rating_text = ratingText[submissionData.rating];

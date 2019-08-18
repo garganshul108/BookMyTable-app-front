@@ -4,11 +4,12 @@ import FormCheckbox from "./subComponents/formCheckbox";
 import RegistrationSubForm from "./subComponents/registrationSubForm";
 import SearchableList from "./subComponents/searchableList";
 import RAdditionFormII from "./subComponents/rAdditionFormII";
-// import default from '../services/authServices';
 import { getCities } from "../services/cityServices";
 import { getNamesOfAllCuisines } from "../services/cuisineServices";
 import { getNamesOfAllFeatures } from "../services/featureServices";
 import { getNamesOfAllEstablishments } from "../services/establishmentServices";
+import Joi from "joi-browser";
+import { time24To12 } from "../util/util";
 
 import "../components/css/restaurantRegistration.css";
 import { postNewRestaurant } from "../services/restaurantServices";
@@ -40,18 +41,11 @@ class RestaurantRegistration extends Component {
         std: "0124",
         number: "4226873"
       },
-      tables: {
-        size_eight: "1",
-        size_four: "2",
-        size_one: "3",
-        size_six: "4",
-        size_ten: "5",
-        size_two: "6"
-      },
+      capacity: "12",
 
       thumb: "www.html.com",
       timings: "12 323- 6",
-      opening_status: 1,
+      opening_status: "1",
       email: "anshul@gmail.com",
       website: "www.ansuhl.com",
       days: {
@@ -78,6 +72,82 @@ class RestaurantRegistration extends Component {
     cuisines_data: [],
     features_data: [],
     establishment_data: []
+  };
+
+  addressSchema = {
+    line_1: Joi.string()
+      .min(1)
+      .required()
+      .label("Line 1"),
+    line_2: Joi.string()
+      .min(1)
+      .required()
+      .label("Line 2")
+  };
+
+  locationSchema = {
+    address: Joi.any(),
+    locality: Joi.string()
+      .required()
+      .label("Locality"),
+    city: Joi.string()
+      .required()
+      .label("City"),
+    locality_verbose: Joi.string()
+      .required()
+      .label("Locality in Detail"),
+    zipcode: Joi.string()
+      .max(6)
+      .min(6)
+      .required()
+      .label("ZIP Code")
+  };
+
+  phoneSchema = {
+    std: Joi.string()
+      .max(4)
+      .min(3)
+      .required()
+      .label("STD Code"),
+    number: Joi.string()
+      .max(10)
+      .min(10)
+      .required()
+      .label("Phone number")
+  };
+
+  mainSchema = {
+    no_of_slots: Joi.number()
+      .required()
+      .min(1)
+      .label("No of Slots"),
+    slots: Joi.any().label("Slots"),
+    average_cost_for_two: Joi.number()
+      .min(0)
+      .label("Average Cost"),
+    cuisines: Joi.any().label("Cuisines"),
+    establishment: Joi.any().label("Cuisines"),
+    features: Joi.any().label("Cuisines"),
+    location: Joi.any(),
+    name: Joi.string()
+      .required()
+      .min(2)
+      .label("Restaurant's Name"),
+    phone: Joi.any(),
+    capacity: Joi.number()
+      .min(0)
+      .max(21)
+      .required()
+      .label("Capacity"),
+    thumb: Joi.any().label("Thumbnail"),
+    timings: Joi.any(),
+    opening_status: Joi.any(),
+    email: Joi.string()
+      .email()
+      .required()
+      .label("Restaurants"),
+    website: Joi.any(),
+    days: Joi.any()
   };
 
   async componentDidMount() {
@@ -111,27 +181,6 @@ class RestaurantRegistration extends Component {
     this.setState({ data });
   };
 
-  // handleSlotFormSubmit = e => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   let newId = parseInt(this.state.data.no_of_slots) + 1;
-  //   let newSlot = { ...this.state.slotForm };
-  //   // console.log(" newID", newId);
-  //   // console.log("sting newID", newId.toString());
-  //   newSlot.id = newId.toString();
-  //   let { data, slotForm } = this.state;
-  //   // console.log(data);
-  //   data.slots.push(newSlot);
-  //   data.no_of_slots = newId;
-  //   this.setState({ data });
-  //   slotForm.id = "";
-  //   slotForm.start = "";
-  //   slotForm.end = "";
-  //   this.setState({ slotForm: newSlot });
-  //   console.log(this.state);
-  //   console.log("Slots Form submit");
-  // };
-
   handleSlotFormSubmit = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -140,7 +189,6 @@ class RestaurantRegistration extends Component {
     if (newSlot.end === "" || newSlot.start === "") return;
     newSlot.id = newId.toString();
     let { data, slotForm } = this.state;
-    // console.log(data);
     data.slots.push(newSlot);
     data.no_of_slots = newId;
     this.setState({ data });
@@ -148,8 +196,6 @@ class RestaurantRegistration extends Component {
     slotForm.start = "";
     slotForm.end = "";
     this.setState({ slotForm });
-    // console.log(this.state);
-    // console.log("Slots Form submit");
   };
 
   handleSlotFormInputChange = ({ currentTarget: input }) => {
@@ -226,6 +272,27 @@ class RestaurantRegistration extends Component {
     } else {
       data[checkbox.name] = checkbox.checked;
     }
+    this.setState({ data }, () => console.log(this.state));
+  };
+
+  handleRadioTypeChange = ({ currentTarget: checkbox }) => {
+    // console.log(
+    //   "name " + checkbox.name,
+    //   "\nch " + checkbox.checked,
+    //   "\nval " + checkbox.dataset.value,
+    //   "\npa " + checkbox.dataset.parent,
+    //   "\nga " + checkbox.dataset.gparent
+    // );
+    let data = { ...this.state.data };
+    if (checkbox.dataset.gparent) {
+      data[checkbox.dataset.gparent][checkbox.dataset.parent][checkbox.name] =
+        checkbox.dataset.value;
+    } else if (checkbox.dataset.parent) {
+      data[checkbox.dataset.parent][checkbox.name] = checkbox.dataset.value;
+    } else {
+      data[checkbox.name] = checkbox.dataset.value;
+      // console.log(data);
+    }
     this.setState({ data });
   };
 
@@ -257,22 +324,11 @@ class RestaurantRegistration extends Component {
     }
   };
 
-  addCapacity = data => {
-    let sum = 0;
-    for (let table of Object.keys(data.tables)) {
-      // console.log(data.tables[table]);
-      sum += parseInt(data.tables[table]);
-    }
-    data["capacity"] = sum.toString();
-    delete data.tables;
-  };
-
   handleSubmit = async e => {
     e.preventDefault();
     let submissionData = { ...this.state.data };
     this.changingNames(submissionData);
     this.deletingFields(submissionData);
-    this.addCapacity(submissionData);
     console.log("state at registration submisson: \n", submissionData);
     await postNewRestaurant(submissionData);
   };
@@ -291,47 +347,82 @@ class RestaurantRegistration extends Component {
             name="name"
             placeholder="Enter Restaurant's Name"
           />
-          <SearchableList
-            placeholder="Enter Location City"
-            listName="cities"
-            value={this.state.data.location.city}
-            onChange={this.handleCityInputChange}
-          >
-            {this.state.cities_data.map(item => (
-              <option value={cityValue(item)} label={item.state} />
-            ))}
-          </SearchableList>
           <div className="row">
-            <div className="col-3">
-              <FormInput
-                label="STD"
-                value={this.state.data.phone.std}
-                onChange={this.handleInputChange}
-                name="std"
-                data-parent="phone"
-                type="number"
-                placeholder="Area Code..."
+            <div className="col-5">
+              <SearchableList
+                label="CITY"
+                placeholder="City"
+                listName="cities"
+                value={this.state.data.location.city}
+                onChange={this.handleCityInputChange}
+              >
+                {this.state.cities_data.map(item => (
+                  <option value={cityValue(item)} label={item.state} />
+                ))}
+              </SearchableList>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col">
+              <FormCheckbox
+                label="&nbsp;Opening Soon"
+                checked={this.state.data.opening_status === "0"}
+                data-value={0}
+                name="opening_status"
+                xClass="form-control"
+                onChange={this.handleRadioTypeChange}
               />
             </div>
             <div className="col">
-              <FormInput
-                label="PHONE"
-                value={this.state.data.phone.number}
-                onChange={this.handleInputChange}
-                name="number"
-                data-parent="phone"
-                placeholder="Phone"
-                type="number"
+              <FormCheckbox
+                label="&nbsp;Already Existing"
+                checked={this.state.data.opening_status === "1"}
+                data-value={1}
+                name="opening_status"
+                xClass="form-control"
+                onChange={this.handleRadioTypeChange}
               />
             </div>
           </div>
-          <FormInput
-            label="OPENING STATUS"
-            value={this.state.data.opening_status}
-            onChange={this.handleInputChange}
-            name="opening_status"
-            placeholder="Exisiting / Opening Soon"
-          />
+          <div className="row">
+            <div className="col">
+              <div className="row">
+                <div className="col-4">
+                  <FormInput
+                    label="STD"
+                    value={this.state.data.phone.std}
+                    onChange={this.handleInputChange}
+                    name="std"
+                    data-parent="phone"
+                    type="number"
+                    placeholder="Area Code..."
+                  />
+                </div>
+                <div className="col">
+                  <FormInput
+                    label="PHONE"
+                    value={this.state.data.phone.number}
+                    onChange={this.handleInputChange}
+                    name="number"
+                    data-parent="phone"
+                    placeholder="Phone"
+                    type="number"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="col-4">
+              <FormInput
+                label="FULL HOUSE CAPACITY"
+                value={this.state.data.capacity}
+                onChange={this.handleInputChange}
+                name="capacity"
+                type="number"
+                min="0"
+              />
+            </div>
+          </div>
         </RegistrationSubForm>
       );
     };
@@ -473,111 +564,6 @@ class RestaurantRegistration extends Component {
       );
     };
 
-    const renderCapacityForm = () => {
-      return (
-        <RegistrationSubForm title="Capacity" xClass="capacity">
-          <small
-            className="text text-muted"
-            style={{ textTransform: "captialize !important" }}
-          >
-            FULL HOUSE
-          </small>
-          <div className="row">
-            <div className="col-6">
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="header">1</td>
-                    <td className="data">
-                      <FormInput
-                        value={this.state.data.tables.size_one}
-                        onChange={this.handleInputChange}
-                        name="size_one"
-                        data-parent="tables"
-                        type="number"
-                        min="0"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="header">2</td>
-                    <td className="data">
-                      <FormInput
-                        value={this.state.data.tables.size_two}
-                        onChange={this.handleInputChange}
-                        name="size_two"
-                        data-parent="tables"
-                        type="number"
-                        min="0"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="header">4</td>
-                    <td className="data">
-                      <FormInput
-                        value={this.state.data.tables.size_four}
-                        onChange={this.handleInputChange}
-                        name="size_four"
-                        data-parent="tables"
-                        type="number"
-                        min="0"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="col-6">
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="header">6</td>
-                    <td className="data">
-                      <FormInput
-                        value={this.state.data.tables.size_six}
-                        onChange={this.handleInputChange}
-                        name="size_six"
-                        data-parent="tables"
-                        type="number"
-                        min="0"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="header">10</td>
-                    <td className="data">
-                      <FormInput
-                        value={this.state.data.tables.size_ten}
-                        onChange={this.handleInputChange}
-                        name="size_ten"
-                        data-parent="tables"
-                        type="number"
-                        min="0"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="header">8</td>
-                    <td className="data">
-                      <FormInput
-                        value={this.state.data.tables.size_eight}
-                        onChange={this.handleInputChange}
-                        name="size_eight"
-                        data-parent="tables"
-                        type="number"
-                        min="0"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </RegistrationSubForm>
-      );
-    };
-
     const renderSlotForm = () => {
       return (
         <RegistrationSubForm title="Slots Available" xClass="slots">
@@ -690,7 +676,8 @@ class RestaurantRegistration extends Component {
                         onClick={this.handleDeleteSlot}
                         id={slot.id}
                       >
-                        {slot.start}&nbsp;-&nbsp;{slot.end}&nbsp;
+                        {time24To12(slot.start)}&nbsp;-&nbsp;
+                        {time24To12(slot.end)}&nbsp;
                         <i className="fa fa-times" aria-hidden="true" />
                       </button>
                     </span>
@@ -745,7 +732,6 @@ class RestaurantRegistration extends Component {
                 {renderBasicInfoForm()}
                 {renderLocationForm()}
                 {renderCharacteristicForm()}
-                {renderCapacityForm()}
                 {renderSlotForm()}
                 {renderContactInfo()}
                 <button
