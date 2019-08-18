@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 
 // const axios = require('axios');
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.headers.common['x-access-token'] = localStorage.getItem("token");
+let accessToken = localStorage.getItem("token");
+if (accessToken) axios.defaults.headers.common['x-access-token'] = accessToken;
 axios.defaults.headers.common['access-control-expose-headers'] = 'x-access-token';
 
 axios.interceptors.response.use(null, error => {
