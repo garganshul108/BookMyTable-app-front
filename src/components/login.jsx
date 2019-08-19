@@ -93,7 +93,7 @@ class Login extends Component {
       localStorage.setItem("token", response.headers["x-token"]);
       toast.success("Login Successful");
       setTimeout(() => {
-        window.location = "/restaurants/" + this.props.match.params.city;
+        window.location = "/";
       }, 1000);
     } catch (ex) {
       if (
