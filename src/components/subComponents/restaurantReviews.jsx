@@ -3,10 +3,11 @@ import React, { Component } from "react";
 class ReviewDiv extends Component {
   render() {
     const { review } = this.props;
+    console.log("review restaurnt", review);
     return (
       <div className="reviewDiv">
         <div className="row">
-          <div className="col-3">
+          <div className="col-2">
             <img
               style={{ width: "100%" }}
               src={review.restaurant.thumb}
@@ -20,13 +21,10 @@ class ReviewDiv extends Component {
                 &nbsp;&nbsp;review
               </span>
             </small>
-            <h6 className="title">{review.restaurant.name}</h6>
+            <h6 className="title">{review.user.name}</h6>
             <small>
               <span className="text text-muted d-block">
-                {review.restaurant.locality}
-              </span>
-              <span className="text text-muted d-block">
-                {review.restaurant.city}
+                {review.user.city}
               </span>
             </small>
           </div>
@@ -59,12 +57,8 @@ class RestaurantReviews extends Component {
   render() {
     console.log("poros target revies", this.props);
     return (
-      <div
-        className="showingReviews"
-        id={this.props.id}
-        style={{ background: "black", height: "400px" }}
-      >
-        <h5>Reviews</h5>
+      <div className="showingReviews" id={this.props.id}>
+        <h5 style={{ fontWeight: "900" }}>All Reviews</h5>
         {this.props.reviews.map(review => (
           <ReviewDiv review={review} />
         ))}

@@ -95,22 +95,7 @@ class RestaurantsFilter extends Component {
           Recently Added&nbsp;&nbsp;
           <small className="text-muted">old to new</small>
         </p> */}
-        <Filter
-          targetProperty="cost"
-          label="Average Cost"
-          content={this.state.costs}
-          sendFilter={this.sendFilter}
-          setLocalFilter={this.setLocalFilter}
-          unsetFilter={this.props.handleDeleteFilter}
-        />
-        <Filter
-          targetProperty="locality"
-          label="Locality"
-          content={this.state.localities}
-          sendFilter={this.sendFilter}
-          setLocalFilter={this.setLocalFilter}
-          unsetFilter={this.props.handleDeleteFilter}
-        />
+
         <Filter
           targetProperty="cuisines"
           label="Cuisine"
@@ -134,6 +119,22 @@ class RestaurantsFilter extends Component {
           sendFilter={this.sendFilter}
           unsetFilter={this.props.handleDeleteFilter}
           setLocalFilter={this.setLocalFilter}
+        />
+        <Filter
+          targetProperty="cost"
+          label="Average Cost"
+          content={this.state.costs}
+          sendFilter={this.sendFilter}
+          setLocalFilter={this.setLocalFilter}
+          unsetFilter={this.props.handleDeleteFilter}
+        />
+        <Filter
+          targetProperty="locality"
+          label="Locality"
+          content={this.state.localities}
+          sendFilter={this.sendFilter}
+          setLocalFilter={this.setLocalFilter}
+          unsetFilter={this.props.handleDeleteFilter}
         />
       </div>
     );

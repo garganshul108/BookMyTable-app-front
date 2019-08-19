@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { time24To12, getDateTime } from "../util/util";
 import { getRestaurantById } from "../services/restaurantServices";
 import HintBox from "./subComponents/hintBox";
+import { toast } from "react-toastify";
 
 const wideDisplayString =
   "?fit=around%7C920%3A200%20&crop=920%3A200%3B%2A%2C%2A";
@@ -90,7 +91,12 @@ class RestaurantProfile extends Component {
               </div>
             </div>
             <div className="col-3 text-right">
-              <div className="badge rating-large badge-success">
+              <div
+                className="badge rating-large badge-success"
+                onClick={() => {
+                  toast.warning("Under Process");
+                }}
+              >
                 <i className="fa fa-pencil-square-o small" aria-hidden="true" />
                 &nbsp;Edit
               </div>

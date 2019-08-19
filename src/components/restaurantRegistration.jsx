@@ -20,45 +20,42 @@ import HintBox from "./subComponents/hintBox";
 class RestaurantRegistration extends Component {
   state = {
     data: {
-      no_of_slots: "2",
-      slots: [
-        { id: 1, start: "13:01", end: "23:00" },
-        { id: 2, start: "11:01", end: "13:00" }
-      ],
+      no_of_slots: "1",
+      slots: [{ id: "1", start: "12:00", end: "14:00" }],
       average_cost_for_two: "100",
       cuisines: ["South Indian"],
-      establishment: ["Pub"],
-      features: ["Cash"],
+      establishment: ["Cafe"],
+      features: ["AC"],
       location: {
         address: {
-          line_1: "A34 A,  A Block",
-          line_2: "South City 2"
+          line_1: "Line 1",
+          line_2: "Line 2"
         },
-        locality: "Sohna Road",
+        locality: "Locality",
         city: "Gurgaon",
-        locality_verbose: "Park hospital, Sohna Road",
-        zipcode: "122018"
+        locality_verbose: "Locaity verbose",
+        zipcode: "123456"
       },
-      name: "Anshul P",
+      name: "Nmae 3",
       phone: {
-        std: "0124",
-        number: "4226873"
+        std: "123",
+        number: "12345678"
       },
-      capacity: "12",
+      capacity: "10000",
 
-      thumb: "www.html.com",
-      timings: "12 323- 6",
+      thumb: "",
+      timings: "qwer",
       opening_status: "1",
-      email: "anshul@gmail.com",
-      website: "www.ansuhl.com",
+      email: "anshulr3@gmail.com",
+      website: "myweb.com",
       days: {
         Monday: false,
-        Tuesday: true,
+        Tuesday: false,
         Wednesday: false,
         Thursday: true,
         Friday: false,
         Saturday: false,
-        Sunday: true
+        Sunday: false
       },
       password: "",
       confirmPassword: ""
