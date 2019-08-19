@@ -147,7 +147,8 @@ class UserProfile extends Component {
     bookmarks: [],
     dineline: [],
     bookings: [],
-    currentDiv: 1
+    currentDiv: 1,
+    breadcrumbs: ["Home", "Profile"]
   };
 
   async componentDidMount() {
@@ -383,7 +384,19 @@ class UserProfile extends Component {
 
     return (
       <div className="container">
-        <div className="dummy" />
+        <div className="dummy">
+          <small>
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb" style={{ background: "inherit" }}>
+                {this.state.breadcrumbs.map(crumb => (
+                  <li className="breadcrumb-item active" aria-current="page">
+                    {crumb}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </small>
+        </div>
         <div className="row">
           <div className="col">
             {renderUserInfo()}

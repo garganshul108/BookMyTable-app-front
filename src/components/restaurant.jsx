@@ -64,7 +64,8 @@ class Restaurant extends Component {
       timings: "",
       website: null,
       wideDisplay: ""
-    }
+    },
+    breadcrumbs: ["Home", "All Restaurants", "Restaurant"]
   };
 
   async componentDidMount() {
@@ -349,7 +350,19 @@ class Restaurant extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col dummy" />
+          <div className="dummy">
+            <small>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb" style={{ background: "inherit" }}>
+                  {this.state.breadcrumbs.map(crumb => (
+                    <li className="breadcrumb-item active" aria-current="page">
+                      {crumb}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </small>
+          </div>
         </div>
         <div className="row">
           <div className="col">

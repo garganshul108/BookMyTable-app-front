@@ -74,7 +74,9 @@ class RestaurantRegistration extends Component {
     cities_data: [],
     cuisines_data: [],
     features_data: [],
-    establishment_data: []
+    establishment_data: [],
+
+    breadcrumbs: ["Home", "All Restaurants", "Add your Restaurant"]
   };
 
   addressSchema = {
@@ -785,7 +787,19 @@ class RestaurantRegistration extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="dummy" />
+          <div className="dummy">
+            <small>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb" style={{ background: "inherit" }}>
+                  {this.state.breadcrumbs.map(crumb => (
+                    <li className="breadcrumb-item active" aria-current="page">
+                      {crumb}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </small>
+          </div>
         </div>
         <div className="row">
           <div className="col">

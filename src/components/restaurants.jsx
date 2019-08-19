@@ -20,7 +20,9 @@ class Restaurants extends Component {
       pageSize: 0,
       currentPage: 1,
       pageCount: 1
-    }
+    },
+
+    breadcrumbs: ["Home", "All Restaurants"]
   };
 
   async componentDidMount() {
@@ -162,7 +164,19 @@ class Restaurants extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="dummy" />
+          <div className="dummy">
+            <small>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb" style={{ background: "inherit" }}>
+                  {this.state.breadcrumbs.map(crumb => (
+                    <li className="breadcrumb-item active" aria-current="page">
+                      {crumb}
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </small>
+          </div>
         </div>
         <h3 style={{ fontWeight: 900 }}>
           Places available in {captialize(this.props.match.params.city)} :{" "}
