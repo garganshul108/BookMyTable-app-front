@@ -14,6 +14,7 @@ import { time24To12 } from "../util/util";
 import "../components/css/restaurantRegistration.css";
 import { postNewRestaurant } from "../services/restaurantServices";
 import { toast } from "react-toastify";
+import HintBox from "./subComponents/hintBox";
 
 class RestaurantRegistration extends Component {
   state = {
@@ -389,6 +390,10 @@ class RestaurantRegistration extends Component {
             name="name"
             placeholder="Enter Restaurant's Name"
           />
+          <HintBox>
+            1. Please make sure that the Name input consits of Latin Letters
+            only 2. Name will be displayed as per the Input Format
+          </HintBox>
           <div className="row">
             <div className="col-5">
               <SearchableList
@@ -403,6 +408,7 @@ class RestaurantRegistration extends Component {
                 ))}
               </SearchableList>
             </div>
+            <div className="col" />
           </div>
 
           <div className="row">
@@ -750,6 +756,7 @@ class RestaurantRegistration extends Component {
                 name="email"
                 type="email"
               />
+              <HintBox>IMPORTANT! Used for Login</HintBox>
             </div>
             <div className="col-6">
               <FormInput
