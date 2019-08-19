@@ -1,7 +1,6 @@
 export function captialize(s) {
     if (typeof s !== 'string') return '';
     var strings = s.split(' ');
-    // console.log(strings);
     var newString = '';
     for (s of strings) {
         if (s.length > 2)
@@ -14,7 +13,8 @@ export function captialize(s) {
 }
 
 export function time24To12(time) {
-    time = (time ? time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) : [time]);
+    if (!time) return time;
+    time = (time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]);
 
     if (time.length > 1) {
         time = time.slice(1);
