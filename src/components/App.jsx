@@ -143,8 +143,8 @@ class App extends Component {
                 )}
               />
               <Route
-                path="/restaurant/registration"
-                render={() => <RestaurantRegistration />}
+                path="/restaurant/registration/:id?"
+                render={props => <RestaurantRegistration {...props} />}
               />
               <Redirect
                 from="/restaurants/dummy/:city"

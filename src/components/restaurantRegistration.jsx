@@ -10,6 +10,7 @@ import { getNamesOfAllFeatures } from "../services/featureServices";
 import { getNamesOfAllEstablishments } from "../services/establishmentServices";
 import Joi from "joi-browser";
 import { time24To12 } from "../util/util";
+import { getRestaurantById } from "../services/restaurantServices";
 
 import "../components/css/restaurantRegistration.css";
 import { postNewRestaurant } from "../services/restaurantServices";
@@ -165,6 +166,22 @@ class RestaurantRegistration extends Component {
   };
 
   async componentDidMount() {
+    console.log("restid", this.props.match.params.id);
+    // if (this.props.match.params.id) {
+    //   let { data } = this.state;
+    //   let restaurant = await getRestaurantById(this.props.match.params.id);
+    //   restaurant = restaurant[0];
+    //   console.log("supplied", restaurant);
+    //   restaurant.phone_numbers = restaurant.phone_numbers.split(",")[0];
+    //   restaurant.phone = {
+    //     std: restaurant.phone_numbers,
+    //     number: restaurant.phone_numbers
+    //   };
+    //   delete restaurant.phone_numbers;
+
+    //   data = restaurant;
+    //   this.setState({ data });
+    // }
     let cities_data = await getCities();
     let cuisines_data = await getNamesOfAllCuisines();
     let features_data = await getNamesOfAllFeatures();
@@ -360,9 +377,9 @@ class RestaurantRegistration extends Component {
   handleSubmit = async e => {
     e.preventDefault();
 
-    let errors = this.validate();
-    console.log(errors);
-    this.setState({ errors: errors || {} });
+    // let errors = this.validate();
+    // console.log(errors);
+    // this.setState({ errors: errors || {} });
 
     let submissionData = { ...this.state.data };
     this.changingNames(submissionData);
@@ -390,10 +407,7 @@ class RestaurantRegistration extends Component {
             name="name"
             placeholder="Enter Restaurant's Name"
           />
-          <HintBox>
-            1. Please make sure that the Name input consits of Latin Letters
-            only 2. Name will be displayed as per the Input Format
-          </HintBox>
+
           <div className="row">
             <div className="col-5">
               <SearchableList
@@ -410,7 +424,7 @@ class RestaurantRegistration extends Component {
             </div>
             <div className="col" />
           </div>
-
+          <HintBox>STATUS</HintBox>
           <div className="row">
             <div className="col">
               <FormCheckbox
@@ -747,6 +761,8 @@ class RestaurantRegistration extends Component {
           title="Contact Info / SignUp Credentials"
           xClass="contactInfo"
         >
+          <HintBox>IMPORTANT! Login Credentials</HintBox>
+
           <div className="row">
             <div className="col-6">
               <FormInput
@@ -756,7 +772,6 @@ class RestaurantRegistration extends Component {
                 name="email"
                 type="email"
               />
-              <HintBox>IMPORTANT! Used for Login</HintBox>
             </div>
             <div className="col-6">
               <FormInput

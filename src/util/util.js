@@ -14,7 +14,7 @@ export function captialize(s) {
 }
 
 export function time24To12(time) {
-    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    time = (time ? time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) : [time]);
 
     if (time.length > 1) {
         time = time.slice(1);
