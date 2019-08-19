@@ -18,6 +18,7 @@ import Restaurant from "./restaurant";
 import UserProfile from "./userProfile";
 import jwtDecode from "jwt-decode";
 import Logout from "./subComponents/logout";
+import RestaurantProfile from "./restaurantProfile";
 
 class App extends Component {
   state = {};
@@ -129,6 +130,12 @@ class App extends Component {
         <div className="container-fluid">
           <div className="row">
             <Switch>
+              <Route
+                path="/restaurant/profile/:id"
+                render={props => (
+                  <RestaurantProfile user={this.state.user} {...props} />
+                )}
+              />
               <Route
                 path="/user/:id"
                 render={props => (
