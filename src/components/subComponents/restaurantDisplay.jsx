@@ -80,7 +80,7 @@ class RestaurantDisplay extends Component {
     }
 
     return (
-      <div className="container-fluid restaurantDisplay" key={id}>
+      <div className="container-fluid restaurantDisplay mx-2" key={id}>
         {/* this is the upper portion */}
         <div className="row">
           <div className="col-3">
