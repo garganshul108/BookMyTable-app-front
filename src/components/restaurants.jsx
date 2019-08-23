@@ -304,9 +304,6 @@ class Restaurants extends Component {
               )}
             </div>
             <RestaurantsCatalogue restaurants={restaurants} />
-            {/* Pagination */}
-
-            {/* Pagination end */}
             {/* end of display catalogue */}
           </div>
           <div className="col-3">
