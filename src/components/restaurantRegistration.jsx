@@ -843,7 +843,7 @@ class RestaurantRegistration extends Component {
               </form>
             </div>
           </div>
-          <div className="col-sm-12 col-md-4 ">
+          <div className="col-sm-12 col-lg-4 ">
             <small className="form-text text-muted">Happy to have you!</small>
             <h4>HELP!</h4>
             <div className="registrationInstructions">
