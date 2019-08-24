@@ -33,18 +33,18 @@ class HomeTop extends Component {
     return (
       <div className="homeTab">
         <div className="row no-gutters">
+          {/* white portion */}
           <div className="col">
             <div className="homeContent">
-              <div className="dummy" />
               <div className="container">
                 <div className="row">
                   <div className="col">
                     <h3 className="title">BookMyTable.com</h3>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col">
-                    <div className="userButtons">
+                <div className="userButtons">
+                  <div className="row">
+                    <div className="col">
                       <Link
                         className="text-danger btn-lg buttons"
                         onClick={this.props.openLogin}
@@ -56,7 +56,9 @@ class HomeTop extends Component {
                           &nbsp;Login
                         </small>
                       </Link>
-                      or
+                    </div>
+                    <div className="col">or</div>
+                    <div className="col">
                       <Link
                         className="text-warning btn-lg buttons"
                         onClick={this.props.openSignUp}
@@ -138,14 +140,18 @@ class HomeTop extends Component {
               </div>
             </div>
           </div>
-          <div className="col-7">
+
+          {/* image on the side */}
+          <div className="col d-none d-md-block">
             <img src={img} alt="" />
           </div>
         </div>
+
+        {/* bottom black portion */}
         <div className="row no-gutters">
           <div
             className="col"
-            style={{ height: "300px", background: "black" }}
+            style={{ height: "200px", background: "black" }}
           />
         </div>
       </div>

@@ -24,6 +24,7 @@ class App extends Component {
   state = {};
 
   componentDidMount() {
+    // toast.info("testting toast working");
     setTimeout(() => {
       console.log("server:", process.env.REACT_APP_API_URL);
     }, 5000);
@@ -78,16 +79,22 @@ class App extends Component {
     console.log("My App loaded.=000=... ");
     return (
       <React.Fragment>
-        <div
-          className="container-fluid"
-          style={{
-            position: "fixed",
-            top: "10px",
-            right: "10px",
-            zIndex: "10"
-          }}
-        >
-          <ToastContainer />
+        <div className="container-fluid">
+          <div className="row">
+            <div
+              className="col"
+              style={{
+                position: "fixed",
+                top: "100px",
+                right: "10px",
+                zIndex: "10",
+                width: "100%",
+                boxSizing: "border-box"
+              }}
+            >
+              <ToastContainer />
+            </div>
+          </div>
         </div>
         <div className="container-fluid">
           <div className="row">
