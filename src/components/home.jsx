@@ -42,9 +42,9 @@ class HomeTop extends Component {
                     <h3 className="title">BookMyTable.com</h3>
                   </div>
                 </div>
-                <div className="userButtons">
-                  <div className="row">
-                    <div className="col">
+                <div className="row">
+                  <div className="col">
+                    <div className="userButtons">
                       <Link
                         className="text-danger btn-lg buttons"
                         onClick={this.props.openLogin}
@@ -56,9 +56,7 @@ class HomeTop extends Component {
                           &nbsp;Login
                         </small>
                       </Link>
-                    </div>
-                    <div className="col">or</div>
-                    <div className="col">
+                      or
                       <Link
                         className="text-warning btn-lg buttons"
                         onClick={this.props.openSignUp}
