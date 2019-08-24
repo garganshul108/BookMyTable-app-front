@@ -96,16 +96,10 @@ class Login extends Component {
         window.location = "/";
       }, 1000);
     } catch (ex) {
-      if (
-        ex.response &&
-        ex.response.status < 500 &&
-        ex.response.status >= 400
-      ) {
-        const errors = { ...this.state.errors };
-        errors.email = ex.response.status + ": " + ex.response.data;
-        console.log(ex.response);
-        this.setState({ errors });
-      }
+      const errors = { ...this.state.errors };
+      errors.email = ex.response.status + ": " + ex.response.data;
+      console.log(ex.response);
+      this.setState({ errors });
     }
   };
 
@@ -120,7 +114,7 @@ class Login extends Component {
           style={{ margin: "0", width: "100%", height: "100%" }}
         >
           <div className="col" />
-          <div className="col-5 loginContainer">
+          <div className="col-12 col-lg-5 loginContainer">
             <button onClick={this.props.closeTab} className="btn btn-danger">
               <i className="fa fa-times" aria-hidden="true" />
             </button>

@@ -41,9 +41,12 @@ class NaviagtionBar extends Component {
       <React.Fragment>
         <div className="navBar-design">
           <div className="container">
-            <nav className="navbar navbar-expand-lg navbar-dark">
-              <NavLink className="navbar-brand" to="/home">
+            <nav className="navbar navbar-expand navbar-dark">
+              <NavLink className="navbar-brand d-none d-md-inline" to="/home">
                 BookMyTable
+              </NavLink>
+              <NavLink className="navbar-brand d-md-none" to="/home">
+                BMT
               </NavLink>
               <button
                 className="navbar-toggler"
@@ -68,7 +71,7 @@ class NaviagtionBar extends Component {
                 </ul>
                 <div className="form-inline">
                   <SearchableList
-                    // className="searchBox"
+                    // className="my-0"
                     placeholder="City"
                     listName="cities"
                     value={this.state.city}

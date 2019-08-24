@@ -36,7 +36,6 @@ class HomeTop extends Component {
           {/* white portion */}
           <div className="col">
             <div className="homeContent">
-              <div className="dummy" />
               <div className="container">
                 <div className="row">
                   <div className="col">
@@ -143,7 +142,7 @@ class HomeTop extends Component {
           </div>
 
           {/* image on the side */}
-          <div className="col">
+          <div className="col d-none d-md-block">
             <img src={img} alt="" />
           </div>
         </div>
@@ -152,7 +151,7 @@ class HomeTop extends Component {
         <div className="row no-gutters">
           <div
             className="col"
-            style={{ height: "300px", background: "black" }}
+            style={{ height: "200px", background: "black" }}
           />
         </div>
       </div>

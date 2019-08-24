@@ -184,7 +184,7 @@ class Restaurants extends Component {
         </h3>
 
         <div className="row no-gutters" style={{ marginBottom: "150px" }}>
-          <div className="col-2">
+          <div className="d-none d-md-block col-md-2">
             <RestaurantsFilter
               city={this.props.match.params.city}
               deleteFilter={this.handleDeleteFilter}
@@ -309,8 +309,7 @@ class Restaurants extends Component {
             {/* Pagination end */}
             {/* end of display catalogue */}
           </div>
-          <div className="col-3">
-            {/* <MyMap /> */}
+          <div className="d-none d-md-block col-md-3">
             <SideAds />
           </div>
         </div>
