@@ -24,7 +24,7 @@ class App extends Component {
   state = {};
 
   componentDidMount() {
-    toast.info("testting toast working");
+    // toast.info("testting toast working");
     setTimeout(() => {
       console.log("server:", process.env.REACT_APP_API_URL);
     }, 5000);
