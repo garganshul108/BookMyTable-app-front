@@ -105,7 +105,7 @@ class SignUp extends Component {
           style={{ margin: "0", width: "100%", height: "100%" }}
         >
           <div className="col" />
-          <div className="col-12 col-lg-5 loginContainer">
+          <div className="col-12 col-xl-5 loginContainer">
             <button onClick={this.props.closeTab} className="btn btn-danger">
               <i className="fa fa-times" aria-hidden="true" />
             </button>
